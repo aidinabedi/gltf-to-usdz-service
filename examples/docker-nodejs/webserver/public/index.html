@@ -11,7 +11,7 @@
     <form action="/convert" enctype="multipart/form-data" id="form" method="post">
         <div class="form-group">
           <input type="file" id="uploaded_file" class="form-control-file" name="uploaded_file">
-          <input type="submit" value="Convert!" class="btn btn-default">            
+          <input type="submit" value="Convert!" class="btn btn-default">
         </div>
     </form>
 
@@ -31,7 +31,7 @@
         .then((result) => {
             if (result.success) {
                 if (confirm("Successfully converted to USDZ! Do want to download the file?")) {
-                    window.location.href = "download?file=" + result.outputPath;
+                    window.location.href = "/download/" + result.outputPath;
                 }
             } else {
                 alert("Conversion failed");

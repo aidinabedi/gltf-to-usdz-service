@@ -35,8 +35,8 @@ app.post('/convert', upload.single('uploaded_file'), function (req, res, next) {
     })
 });
 
-app.get("/download", function (req, res, next) {
-    var filename = req.query.file;
+app.get("/download/:file", function (req, res, next) {
+    var filename = req.params.file;
     const file = `${__dirname}/uploads/${filename}`;
     res.download(file);
 })
