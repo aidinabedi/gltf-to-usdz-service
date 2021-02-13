@@ -4,6 +4,9 @@ const path = require('path');
 const axios = require('axios');
 var multer  = require('multer')
 
+var cors = require('cors');
+app.use(cors());
+
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads')
@@ -13,7 +16,7 @@ var storage = multer.diskStorage({
       cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname))
     }
 })
-  
+
 var upload = multer({ storage: storage })
 
 const bodyParser = require('body-parser');
@@ -33,7 +36,7 @@ app.post('/convert', upload.single('uploaded_file'), function (req, res, next) {
 });
 
 app.get("/download", function (req, res, next) {
-    var filename = req.query.file; 
+    var filename = req.query.file;
     const file = `${__dirname}/uploads/${filename}`;
     res.download(file);
 })
